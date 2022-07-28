@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>LOGIN</title> 
+        <link rel="stylesheet" type="text/css" href="./css/login.css">
+        <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>       
+        
+        <script>
+        
+            function login(){
+                let id = document.getElementById("mem_id").value;
+                console.log(id);
+                let pw = document.getElementById("mem_pw").value;
+                console.log(pw);
+                let label_mem_id = document.querySelector(".login_form label[for='mem_id']");
+                let label_mem_pw = document.querySelector(".login_form label[for='mem_pw']");
+                
+                if(mem_id === null || mem_id === undefined || mem_id ===""){
+                    label_mem_id.classList.add("warning");
+                    alert("아이디 또는 패스워드가 입력되지 않았습니다.");
+                    return false;
+                }else if(mem_pw === null || mem_pw === undefined || mem_pw ===""){
+                    label_mem_pw.classList.add("warning");
+                    alert("아이디 또는 패스워드가 입력되지 않았습니다.");
+
+                    return false;
+                }else{
+                	let memberList = localStorage.getItem("memberList");
+                	if(memberList === null || memberList === undefined || memberList === "" ){
+            	 		console.log("회원 목록을 불러오지 못하였습니다.");
+                }else{
+                	let mem_id = $("#mem_id").val();
+        	 		let mem_pw = $("#mem_pw").val();
+        	 		
+        	 		memberList = JSON.parse(memberList);
+        	 		console.log("memberList.length:::::"+memberList.length);
+        	 		for(let i = 0; i < memberList.length; i++){
+        	 			if(mem_id == memberList[i].mem_id){
+        	 				console.log("아이디가 존재 합니다.");
+        	 				if(mem_pw == memberList[i].mem_pw){
+        	 					console.log("아이디와 패스워드가 일치 합니다.");
+        	 					sessionStorage.setItem("mem_id",mem_id);
+        	 					location.href="/project_02/home.do";
+        	 					
+        	 					
+        	 					
+        	 					return false; //반복문 종료
+        	 				}else{
+        	 					alert("아이디 또는 패스워드가 올바르지 않습니다.");
+        	 					return false;
+        	 				}
+        	 			}
+        	 		}
+        	 		alert("아이디가 존재하지 않습니다. 회원가입을 원하시면  join을  눌러주세요");
+                }
+//                alert("드가자");
+//                location.href ="/project_02/home.do";
+                  
+            }
+        }
+           
+            
+           
+            
+            
+             function join(){
+            	 location.href = "/project_02/join.do";
+             }
+            
+
+        </script>
+    </head>
+    <body>
+        <section class="login_form">
+            <h1>Delivery</h1>
+            <h2>Share</h2>
+            <form class="loginform" action="">
+                <div class ="int-area">
+                    <input type="text" id="mem_id" name="mem_id" value="" placeholder="ID" autocomplete="off"
+                    required>
+                </div>
+                <div class="int-area" id="pw_area">
+                    <input type="password" id="mem_pw" name="mem_pw" placeholder="Password" autocomplete="off"
+                    required>
+                </div>
+            </form>   
+            <div class="btn-area">
+                <button type="button" id="btn_id" onclick="login()">LOGIN</button>
+            </div>               
+            <div class="caption">
+                <h3>
+                    <a href="#" id="join" onclick="join()">회원가입</a>
+                    <a href="#" id="find_pw" onclick="">비밀번호 찾기</a>
+                </h3>
+        </div>
+            <div id="naver_id_login">
+<!--                 <input type="image" id="naver_btn" src="./images/naver_login.png" style="width: 200px; height:auto;"> -->
+            </div>
+            <script type="text/javascript">
+		        var naver_id_login = new naver_id_login("4l60fdWpAHIwLmuKtqLZ", "http://192.168.1.31:8080/project_02/callback.do");
+			      	var state = naver_id_login.getUniqState();
+			      	naver_id_login.setButton("green", 3,50);
+			      	naver_id_login.setDomain("http://localhost:8080/");
+			      	naver_id_login.setState(state);
+			      	//naver_id_login.setPopup();
+			      	naver_id_login.init_naver_id_login();
+		        	
+        			
+        	
+        		</script>
+        </section>
+    </body>
+</html>

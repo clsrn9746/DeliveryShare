@@ -1,0 +1,160 @@
+*{
+    /* background-color: red; */
+    /* font-family: 'Noto Sans KR', sans-serif; */
+    list-style: none;
+    text-decoration: none;
+    margin: 0 auto;
+    padding: 0;
+    color: black;
+}
+
+.intro_bg{
+    width: 100%;
+    height: 600px;
+    
+    background-color: lightblue;
+    background-size: cover;
+    /* border-bottom: 1px solid black; */
+}
+
+#logo img{
+    margin-left: 70%;
+    height: 100px;
+    width: auto;
+}
+
+#logo_menu{
+    width: 100%; 
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    background-color: white;
+    /* border-bottom: 1px solid black; */
+}
+
+#logo{
+    float: left;
+}
+
+#menu{
+    position: relative;
+    left: 100px;
+    top: 35px;
+}
+
+#menu > ul > li{
+    /* float: left; */
+    display: inline-block;
+    margin-right: -60px;
+}
+#menu > ul > li > a{
+    font-size:19px;
+    color:black;
+    font-weight: bold;
+    width:180px;
+    display:inline-block;
+    /* margin:40px 0; */
+}
+
+#menuicon{
+    display: none;
+}
+
+.main_logo > img{
+    border: 3px solid lightsalmon
+}
+
+.main_logo{
+    display: flex;
+    position: relative;
+    top: -450px;
+}
+
+#menu a:hover{
+    /* animation: fade-in .5s; */
+    /* animation-fill-mode: forwards; */
+    color: lightsalmon;
+}
+
+.content01{
+    width: 1280px;
+    height: 700px;
+    background-color: #fff4f0;
+    margin-top: -323px;
+}
+
+
+#div_table{
+    width: 1280px;
+    height: 500px;
+    background-color: #fff4f0;
+}
+
+#div_table > table{
+    width: 80%;
+    height: 490px;
+    background-color: white;
+}
+th, td {
+    text-align: center;
+    border-bottom: 1px solid lightslategrey;
+}
+
+.content01_h1{
+    width: 100%;
+    height: 100px;
+    background-color: #fff4f0;
+    text-align: center;
+}
+
+.content01_h1 > h1{
+    padding-top: 30px;
+}
+
+.div_paging{
+    width: 100%;
+    height: 100px;
+    background-color: lightcyan;
+}
+.div_paging_a{
+    width: 300px;
+    height: 30px;
+    background-color: lightpink;
+    text-align: center;
+    padding-top: 20px;
+}
+.div_paging_a > a{
+    padding-left:7px
+}
+.div_paging_a > a:hover {
+    color: lightsalmon;
+    font-weight:bold;
+}
+
+.div_board_write{
+    width: 100px;
+    height: 50px;
+    background-color: limegreen;
+    position: relative;
+    left: 510px;
+    top: -30px;
+} 
+.div_board_write > input{
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.div_board_write > input:active{
+    transform:translate(2px,2px);
+}
+
+.contents, .content01, .content01_h1, #div_table, #div_table > table,
+     .div_paging, .div_paging_a, .div_board_write{
+    background-color: #fff;
+}
+
+#profile_btn{
+    position: relative;
+    right: 10px;
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="./css/style_boardwrite.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(function(){
+
+        let div_img = document.getElementById("img_div");
+        $("#page_footer").load("/project_02/footer.do");
+        $("#page_header").load("/project_02/header.do");
+
+        setInterval(function(){
+            div_img.style.backgroundImage="url(./images/food.jpg)";
+        } );
+        
+        temp_write_num = sessionStorage.getItem("temp_write_num");
+    	
+    	console.log("temp_write_num", temp_write_num);
+    	if( temp_write_num !==null && temp_write_num !==undefined && temp_write_num !==""){
+    		let boardList = localStorage.getItem("boardList");
+    		console.log("boardList",boardList);
+    	
+    		//let boardList_json = JSON.parse(boardList);
+    		boardList_json = JSON.parse(boardList);
+    		
+    		console.log("boardList_json", boardList_json);
+    		
+    		for(let i in boardList_json){
+    			if(temp_write_num == boardList_json[i].write_num){
+    				console.log("해당 게시글을 찾았습니다.");
+    				
+    				$("#notice_title").val(boardList_json[i].notice_title);
+    				$("#notice_content").val(boardList_json[i].notice_content);
+    				$("select[name='gender']").val(boardList_json[i].notice_gender)
+    					.prop("checked", true);
+    				$("input:radio[id='"+boardList_json[i].notice_job+"']")
+    					.prop("checked", true);
+    				
+    				$("input:checkbox").prop("checked", false);
+    				
+    				let arr_region = boardList_json[i].notice_region;
+    				console.log("arr_region", arr_region);
+    				for(let i in arr_region){
+    					$("input:checkbox[id='"+arr_region[i] +"']")
+    						.prop("checked", true);
+    				}	
+    				//본인글이 아니면 수정, 삭제 버튼 숨기기
+    				let mem_id = sessionStorage.getItem("mem_id");
+    				if(mem_id != boardList_json[i].mem_id){
+    					$("#write_update").hide();
+    					$("#write_delete").hide();
+    				}
+    			} 
+    		}
+    		//수정인 경우 등록버튼 숨기기
+    		$("#write_insert").hide();
+    	}else{
+    		//등록인 경우 이므로 수정 버튼 숨기기
+    		$("#write_update").hide();
+    	}
+        
+    });
+        
+    	
+
+    function fn_submit(){
+            // alert("123");
+
+    	 let write_num = localStorage.getItem("write_num");
+    	 if(write_num === null || write_num === undefined || write_num ===""){
+    		 write_num = 1;
+    	 }else{
+    		 write_num = parseInt(write_num) +1;
+    	 }
+    	 console.log("write_num",write_num);
+    	 
+        let notice_title = $("#notice_title").val();
+        let notice_content = $("#notice_content").val();
+        let notice_region = [];
+        let region = $("input[name='region']:checked");
+        
+    	 region.each(function(){
+    		notice_region.push($(this).val()); 
+    	 });
+    	 let mem_id = sessionStorage.getItem("mem_id");
+    	 let current_date = new Date();
+    	 //모든 정보를 객체에 담기
+    	 let boardWrite = {};
+    	 boardWrite.write_num = write_num;
+    	 boardWrite.notice_title = notice_title;
+    	 boardWrite.notice_content = notice_content;
+    	 boardWrite.notice_region = notice_region;
+    	 boardWrite.mem_id = mem_id;
+    	 boardWrite.write_date = current_date.toLocaleString();
+    	 
+    	 let boardArray = localStorage.getItem("boardList");
+    	 
+    	 if(boardArray === null || boardArray === undefined || boardArray === ""){
+    	 	//만약 글이 하나도 없으면
+    		 boardArray = [];
+    	 }else{
+    		 //글이 하나라도 있으면
+    		 boardArray = JSON.parse(boardArray);
+    	 }
+    	 
+    	 boardArray.push(boardWrite);
+    	 console.log("boardArray",boardArray);
+    	 
+    	 let boardList = JSON.stringify(boardArray);
+    	 console.log("boardList", boardList);
+    	 
+    	 localStorage.setItem("boardList", boardList);
+    	 localStorage.setItem("write_num", write_num);
+    	 
+    	 alert("등록이 완료되었습니다.");
+    	 if($("input:checkbox[id='Seoul']").is(":checked")){
+    	 location.href="/project_02/seoul.do";
+    	 }else if($("input:checkbox[id='Busan']").is(":checked")){
+    		 location.href="/project_02/busan.do";
+    	 }else if($("input:checkbox[id='Daegu']").is(":checked")){
+    		 location.href="/project_02/daegu.do";
+    	 }else if($("input:checkbox[id='Incheon']").is(":checked")){
+    		 location.href="/project_02/incheon.do";
+    	 }else if($("input:checkbox[id='Ulsan']").is(":checked")){
+    		 location.href="/project_02/ulsan.do";
+    	 }else if($("input:checkbox[id='Daejeon']").is(":checked")){
+    		 location.href="/project_02/daejeon.do";
+    	 }
+     
+    }
+    function fn_boardList(){
+    	console.log("fn_boardList");
+    	sessionStorage.removeItem("temp_write_num");
+    	location.href="/project_02/busan.do";
+        }
+    
+    function fn_write_update(){
+    	console.log("fn_write_update");
+    	let ret = confirm("수정하시겠습니까?");
+    	if (ret == true){
+    		console.log("수정을 진행하겠습니다.");
+    		console.log("boardList_json", boardList_json);
+    		
+    		for( let i in boardList_json){
+    			if( temp_write_num == boardList_json[i].write_num){
+    				console.log("해당 게시글을 찾았습니다.");
+    				
+    				boardList_json[i].notice_title  =  $("#notice_title").val();
+    				boardList_json[i].notice_content  =  $("#notice_content").val();
+    				boardList_json[i].notice_gender  =  $("#gender").val();
+    				boardList_json[i].notice_job  
+    					=  $("input:radio[name='job']:checked").val();
+    				
+    				let update_region = $("input:checkbox[name='region']:checked");
+    				let arr_region = [];
+    				update_region.each(function(){
+    					console.log("$(this).val()", $(this).val());
+    					arr_region.push($(this).val());
+    				});
+    				boardList_json[i].notice_region = arr_region;
+    				
+    				console.log("boardList_json[i]", boardList_json[i]);
+    			}
+    		}
+    		 
+    		let boardList = JSON.stringify(boardList_json);
+    		localStorage.setItem("boardList", boardList);
+    		sessionStorage.removeItem("temp_write_num");
+    		alert("수정하였습니다.");
+    		if($("input:checkbox[id='Seoul']").is(":checked")){
+    	    	 location.href="/project_02/seoul.do";
+    	    	 }else if($("input:checkbox[id='Busan']").is(":checked")){
+    	    		 location.href="/project_02/busan.do";
+    	    	 }else if($("input:checkbox[id='Daegu']").is(":checked")){
+    	    		 location.href="/project_02/daegu.do";
+    	    	 }else if($("input:checkbox[id='Incheon']").is(":checked")){
+    	    		 location.href="/project_02/incheon.do";
+    	    	 }else if($("input:checkbox[id='Ulsan']").is(":checked")){
+    	    		 location.href="/project_02/ulsan.do";
+    	    	 }else if($("input:checkbox[id='Daejeon']").is(":checked")){
+    	    		 location.href="/project_02/daejeon.do";
+    	    	 }
+    		
+    	}else{
+    		alert("취소하셨습니다.");
+    	}
+    }
+    function fn_write_delete(){
+    	console.log("fn_write_delete");
+    	let ret = confirm("삭제하시겠습니까?");
+    	if(ret == true)	{
+    		console.log("temp_write_num", temp_write_num);
+    		console.log("boardList_json.length",boardList_json.length );
+    		for(let i in boardList_json){
+    			if(temp_write_num == boardList_json[i].write_num){
+    				console.log("해당게시글을 찾았습니다."); 
+    				let mem_id = sessionStorage.getItem("mem_id");
+    				if(mem_id == boardList_json[i].mem_id){
+    					boardList_json.splice(i,1);
+    				}else{
+    					alert("해당 작성자만 삭제 가능합니다.");
+    					return;
+    				}
+    			}
+    		}
+    		console.log("boardList_json.length",boardList_json.length );
+    		let boardList = JSON.stringify(boardList_json);
+    		localStorage.setItem("boardList", boardList);
+    		sessionStorage.removeItem("temp_write_num"	);
+    		if($("input:checkbox[id='Seoul']").is(":checked")){
+    	    	 location.href="/project_02/seoul.do";
+    	    	 }else if($("input:checkbox[id='Busan']").is(":checked")){
+    	    		 location.href="/project_02/busan.do";
+    	    	 }else if($("input:checkbox[id='Daegu']").is(":checked")){
+    	    		 location.href="/project_02/daegu.do";
+    	    	 }else if($("input:checkbox[id='Incheon']").is(":checked")){
+    	    		 location.href="/project_02/incheon.do";
+    	    	 }else if($("input:checkbox[id='Ulsan']").is(":checked")){
+    	    		 location.href="/project_02/ulsan.do";
+    	    	 }else if($("input:checkbox[id='Daejeon']").is(":checked")){
+    	    		 location.href="/project_02/daejeon.do";
+    	    	 }
+    		
+    	}else{
+    		alert("취소하셨습니다.");
+    	}
+    	
+    }
+    
+    function checkBox(element){
+    	const checkboxes = document.getElementsByName("region");
+    
+	    checkboxes.forEach((cb) => {
+	      cb.checked = false;
+	    })
+	    
+	    element.checked = true;
+    	
+    }
+
+
+
+
+
+    </script>
+
+</head>
+<body>
+    <div id="wrap">
+        <div id="logo_menu" class="logo_menu">           
+            <h1 id="logo">
+                <a href="/project_02/home.do"><img src="./images/logo1.png"></a>
+            </h1>
+            
+            <header id="page_header"></header>
+            
+            <input type="checkbox" id="menuicon"/>
+            <label for="menuicon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+        <div id="img_div" class="intro_bg">
+            <div class="header">
+                <!-- <div class="searchArea">
+                    <form action="">
+                        <input type="text" id="input_search" name="input_search" value="" placeholder="Search">
+                        <span>검색</span>
+                    </form>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="main_logo">
+            <img src="./images/main_logo.png">
+        </div>
+
+        <div class="contents">
+            <!-- 사용할 영역잡기 -->
+            <div class="content01">
+                <div class="content01_h1">
+                    <h1>글쓰기</h1>
+                </div>
+                <form action="" id="editor_form" method="post">
+                    <div id="div_table">
+                        <table>
+                            <colgroup>
+                                <col width="200">
+                                <col width="400">
+                            </colgroup>
+                            <tr>
+                                <td class="td_left">제목</td>
+                                <td class="td_right">
+                                    <input type="text" id="notice_title" maxlength="30"
+                                        value="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_left">내용</td>
+                                <td class="td_right">
+                                    <!-- textAread 공백 주의 -->
+                                    <textarea  id="notice_content" name="notice_content"
+                                         cols="30" rows="10" style="width: 656px; height: 406px;"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_left">지역</td>
+                                <td class="td_right">
+                                    <label for="Seoul">
+                                        <input type="checkbox" name="region" 
+                                            id="Seoul" value="Seoul" 
+                                            onclick ="checkBox(this)">서울
+                                    </label>
+                                    <label for="Daejeon">
+                                        <input type="checkbox" name="region" 
+                                            id="Daejeon" value="Daejeon"
+                                            onclick ="checkBox(this)">대전
+                                    </label>
+                                    <label for="Ulsan">
+                                        <input type="checkbox" name="region" 
+                                            id="Ulsan" value="Ulsan"
+                                            onclick ="checkBox(this)">울산
+                                    </label>
+                                    <label for="Busan">
+                                        <input type="checkbox" name="region" 
+                                            id="Busan" value="Busan"
+                                            onclick ="checkBox(this)">부산
+                                    </label>
+                                    <label for="Daegu">
+                                        <input type="checkbox" name="region" 
+                                            id="Daegu" value="Daegu"
+                                            onclick ="checkBox(this)">대구
+                                    </label>
+                                    <label for="Incheon">
+                                        <input type="checkbox" name="region" 
+                                            id="Incheon" value="Incheon"
+                                            onclick ="checkBox(this)">인천
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- 버튼 -->
+                    <div id="div_button">
+                        <input type="button" onclick="fn_boardList()" value="목록">
+                        <input type="button" id="write_insert" onclick="javascript:fn_submit()" value="등록">
+                        <input type="button" id="write_update" onclick="fn_write_update()" value="수정">
+                        <input type="button" id="write_delete" onclick="fn_write_delete()" value="삭제">
+                    </div>
+                </form>
+            </div>
+        </div>
+       
+
+
+        <footer>
+            <footer id="page_footer"></footer>
+
+
+        </footer>
+
+
+
+
+
+
+
+    </div> <!-- wrap -->
+
+</body>
+</html>

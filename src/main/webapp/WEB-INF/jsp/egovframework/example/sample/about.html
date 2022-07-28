@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="./css/map.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        window.onload=function(){
+
+        let div_img = document.getElementById("img_div");
+        $("#page_footer").load("/project_02/footer.do");
+        $("#page_header").load("/project_02/header.do");
+
+        setInterval(function(){
+            div_img.style.backgroundImage="url(./images/food.jpg)";
+        } );
+
+
+    }
+
+    </script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['년도', '판매량'],
+        ['2021.11', 20711],
+        ['2021.12', 24495],
+        ['2022.01', 23886],
+        ['2022.02', 22443]
+      ]);
+
+      var options = {
+        chart: {
+          title: '온라인 쇼핑 동향',
+          subtitle: '음식 서비스 분야',
+        }
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('chart'));
+
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+  </script>
+    </script>
+
+</head>
+<body>
+    <div id="wrap">
+        <div id="logo_menu" class="logo_menu">           
+            <h1 id="logo">
+                <a href="/project_02/home.do"><img src="./images/logo1.png"></a>
+            </h1>
+            
+            <header id="page_header"></header>
+            
+            <input type="checkbox" id="menuicon"/>
+            <label for="menuicon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+        <div id="img_div" class="intro_bg">
+            <div class="header">
+                <!-- <div class="searchArea">
+                    <form action="">
+                        <input type="text" id="input_search" name="input_search" value="" placeholder="Search">
+                        <span>검색</span>
+                    </form>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="main_logo">
+            <img src="./images/main_logo.png">
+        </div>
+
+        <div class="main_area">
+        	<div id="chart" style="width: 90%; height: 680px;"></div>
+        </div>
+
+        <footer>
+            <footer id="page_footer" ></footer>
+
+
+        </footer>
+
+
+
+
+
+
+
+    </div> <!-- wrap -->
+
+</body>
+</html>

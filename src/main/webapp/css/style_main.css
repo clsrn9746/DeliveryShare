@@ -1,0 +1,267 @@
+*{
+    /* background-color: red; */
+    /* font-family: 'Noto Sans KR', sans-serif; */
+    list-style: none;
+    text-decoration: none;
+    margin: 0 auto;
+    padding: 0;
+    color: black;
+}
+
+.intro_bg{
+    width: 100%;
+    height: 600px;
+    
+    background-color: lightblue;
+    background-size: cover;
+    /* border-bottom: 1px solid black; */
+}
+
+#logo img{
+    margin-left: 70%;
+    height: 100px;
+    width: auto;
+}
+
+#logo_menu{
+    width: 100%; 
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    background-color: white;
+    /* border-bottom: 1px solid black; */
+}
+
+#logo{
+    float: left;
+}
+
+#menu{
+    position: relative;
+    left: 100px;
+    top: 35px;
+}
+
+#menu > ul > li{
+    /* float: left; */
+    display: inline-block;
+    margin-right: -60px;
+}
+#menu > ul > li > a{
+    font-size:19px;
+    color:black;
+    font-weight: bold;
+    width:180px;
+    display:inline-block;
+    /* margin:40px 0; */
+}
+
+#profile_btn{
+    position: relative;
+    right: 10px;
+}
+
+#menuicon{
+    display: none;
+}
+
+@media(max-width:900px){
+    .nav{
+        display: none;
+    }
+    .searchArea{
+        margin: 0;
+    }
+    #input_search{
+        width: 200px;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    input[id="menuicon"]+label{
+        display: block;
+        width: 30px;
+        height: 20px;
+        background-color: black;
+        position: fixed;
+        right: 30px;
+        top: 25px;
+        cursor: pointer;
+    }
+    /*span 태그에 가로바 설정  */
+    input[id="menuicon"]+label > span{
+        display: block;
+        width: 100%;
+        height: 4px;
+        background-color: white;
+    }
+
+    /* span 3줄 위치 설정 */
+    input[id="menuicon"] + label span:nth-child(1){
+        position: absolute;
+        top: 0;
+    }
+    input[id="menuicon"] + label span:nth-child(2){
+        position: absolute;
+        /* top: 50%; */
+        top: calc(50% - 2px);
+    }
+    input[id="menuicon"] + label span:nth-child(3){
+        position: absolute;
+        bottom: 0;
+    }
+
+}
+
+.main_logo > img{
+    border: 3px solid lightsalmon
+}
+
+.main_logo{
+    display: flex;
+    position: relative;
+    top: -450px;
+}
+
+.main_area{
+    width: 100%;
+    height: 620px;
+    background-color: #fff4f0;
+    margin-top: -323px;
+}
+
+.area_box {
+    display: flex;
+    position: relative;
+    top: 35px;
+    width: 1280px;
+    height: 500px;
+    background-color: #ffbca1;
+    padding-top: 50px;
+    border-radius: 10px;
+}
+
+.area_1 > li {
+    background-color: white;
+    position: relative;
+    top: -70px;
+    left: 50px;
+    width: 400px;
+    height: 100px;
+    /* border-bottom: 1px solid black; */
+    text-align: center;
+    font-family: '나눔스퀘어_ac Bold';
+    margin-top: 70px; 
+    border-radius: 10px;
+}
+
+
+/* .area_1 > li > div > p {
+    font-size: 100px;
+} */
+
+
+.area_2 > li {
+    background-color: white;
+    position: relative;
+    top: -70px;
+    right: 50px;
+    width: 400px;
+    height: 100px;
+    /* border-bottom: 1px solid black; */
+    text-align: center;
+    font-family: '나눔스퀘어_ac Bold';
+    margin-top: 70px; 
+    border-radius: 10px;
+}
+
+.area_box > ul > li > div > a{
+    font-size: 45px;
+    position: relative;
+    top: 28px;
+}
+
+.seoul > img{
+    width: 80px;
+    float: left;
+    position: relative;
+    top: 10px;
+    left: 40px;
+}
+
+.seoul > a {
+    position: relative;
+    right: 15px;
+}
+
+.daegu > img {
+    width: 80px;
+    float: left;
+    position: relative;
+    top: 15px;
+    left: 40px;
+}
+
+.daegu > a{
+    position: relative;
+    /* right: 1px; */
+}
+
+.incheon > img{
+    width: 65px;
+    float: left;
+    position: relative;
+    top: 20px;
+    left: 45px;
+}
+
+.incheon > a{
+    position: relative;
+    right: 8px;
+}
+
+.ulsan > img{
+    width: 70px;
+    float: left;
+    position: relative;
+    top: 20px;
+    left: 50px;
+}
+
+.ulsan > a{
+    position: relative;
+    left: 6px;
+}
+
+.daejeon > img{
+    width: 70px;
+    float: left;
+    position: relative;
+    top: 19px;
+    left: 45px;
+}
+
+.daejeon > a{
+    position: relative;
+    right: 10px;
+}
+
+.busan > img{
+    width: 70px;
+    float: left;
+    position: relative;
+    top: 20px;
+    left: 50px;
+}
+
+.busan > a{
+    position: relative;
+    left: 6px;
+}
+
+
+#menu a:hover{
+    /* animation: fade-in .5s; */
+    /* animation-fill-mode: forwards; */
+    color: lightsalmon;
+}

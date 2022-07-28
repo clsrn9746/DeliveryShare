@@ -1,0 +1,29 @@
+.div_footer{
+    width: 100%;
+    height: 150px;
+    background-color: lightslategray;
+    display: flex;
+    font-family: '나눔스퀘어_ac Light';
+}
+.div_footer > div{
+    padding-top: 30px;
+}
+.div_footer > div:first-child{
+    flex: 4;
+    background-color: lime;
+}
+.div_footer > div:last-child{
+    flex: 6;
+    background-color: magenta;
+}
+.div_footer > div:first-child{
+    background-color: #ffe6dc;
+    /* border-top: 1px solid black; */
+}
+.div_footer > div:last-child{
+    background-color: #ffe6dc;
+}
+.div_footer > div:first-child{
+    text-align:center;
+    font-weight: bold;
+}

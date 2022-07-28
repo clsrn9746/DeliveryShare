@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="../css/style_boardlist.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        window.onload=function(){
+
+        let div_img = document.getElementById("img_div");
+        $("#page_footer").load("../footer.html");
+
+        setInterval(function(){
+            div_img.style.backgroundImage="url(../images/food.jpg)";
+        } );
+
+
+    }
+
+    </script>
+
+</head>
+<body>
+    <div id="wrap">
+        <div id="logo_menu" class="logo_menu">           
+            <h1 id="logo">
+                <a href="../home.html"><img src="../images/logo1.png"></a>
+            </h1>
+            <div id="menu">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">INTRO</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">&nbsp; MAP &nbsp;</a></li>
+                    <li><a href="#">NOTICE</a></li>
+                </ul>
+            </div>
+            <input type="checkbox" id="menuicon"/>
+            <label for="menuicon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+        <div id="img_div" class="intro_bg">
+            <div class="header">
+                <!-- <div class="searchArea">
+                    <form action="">
+                        <input type="text" id="input_search" name="input_search" value="" placeholder="Search">
+                        <span>검색</span>
+                    </form>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="main_logo">
+            <img src="../images/main_logo.png">
+        </div>
+
+        <div class="content01">
+            <div class="content01_h1">
+            <h1>인천광역시</h1>
+            </div>
+
+        <div id="div_table">
+            <table>
+                <colgroup>
+                    <col width="40">
+                    <col >
+                    <col width="180">
+                    <col width="300">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>시간</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>11</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>이야</td>
+                        <td>3분전</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>우</td>
+                        <td>10분전</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>홍길동</td>
+                        <td>1시간전</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>홍길동</td>
+                        <td>1시간전</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>홍길동</td>
+                        <td>1시간전</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>홍길동</td>
+                        <td>1시간전</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>홍길동</td>
+                        <td>1시간전</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>홍길동</td>
+                        <td>1시간전</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>홍길동</td>
+                        <td>1시간전</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>홍길동</td>
+                        <td>1시간전</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><a href="#"></a> 대충 어디서 몇시에 같이 시켜먹을사람~</td>
+                        <td>홍길동</td>
+                        <td>1시간전</td>
+                    </tr>
+                </tbody>
+             </table>
+          </div>
+          
+          <div class="div_paging">
+            <div class="div_paging_a">
+                <a href="#">&lt;&lt;</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">&gt;&gt;</a>
+            </div>
+            <div class="div_board_write">
+                <input type="button" onclick="location.href='../board_write.html'" value="글쓰기">
+            </div>
+        </div>
+
+
+
+        </div>
+
+
+        <footer>
+            <footer id="page_footer"></footer>
+        </footer>
+
+
+
+
+
+
+
+    </div> <!-- wrap -->
+
+</body>
+</html>
